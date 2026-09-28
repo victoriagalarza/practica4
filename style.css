@@ -1,0 +1,614 @@
+/* =========================================================
+   CONFIGURACIÓN GENERAL
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #dbeafe;
+}
+
+
+/* =========================================================
+   CANVAS THREE.JS
+========================================================= */
+
+#canvas-container {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 1;
+}
+
+canvas {
+    display: block;
+}
+
+
+/* =========================================================
+   TARJETAS HUD
+========================================================= */
+
+.hud-card {
+    position: fixed;
+
+    background: rgba(
+        15,
+        23,
+        42,
+        0.90
+    );
+
+    color: #f8fafc;
+
+    border: 1px solid rgba(
+        148,
+        163,
+        184,
+        0.35
+    );
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 12px 30px
+        rgba(
+            15,
+            23,
+            42,
+            0.30
+        );
+
+    backdrop-filter: blur(12px);
+
+    z-index: 10;
+}
+
+
+/* =========================================================
+   PANEL DE INFORMACIÓN
+========================================================= */
+
+#info-panel {
+
+    top: 20px;
+    left: 20px;
+
+    width: 310px;
+
+    padding: 18px;
+}
+
+
+/* =========================================================
+   ENCABEZADO DE TARJETAS
+========================================================= */
+
+.card-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 12px;
+}
+
+.card-header h3 {
+
+    margin: 0;
+
+    font-size: 17px;
+
+    color: #f8fafc;
+}
+
+.badge {
+
+    padding:
+        4px 8px;
+
+    border-radius: 999px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   TEXTO DE AYUDA
+========================================================= */
+
+#hint-text {
+
+    margin: 0;
+
+    color: #cbd5e1;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   DATOS DE PLANTA
+========================================================= */
+
+#plant-data {
+
+    margin-top: 12px;
+}
+
+.hidden {
+
+    display: none !important;
+}
+
+
+.data-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    padding:
+        7px 0;
+
+    border-bottom:
+        1px solid
+        rgba(
+            148,
+            163,
+            184,
+            0.15
+        );
+
+    font-size: 12px;
+}
+
+.data-row strong {
+
+    color: #94a3b8;
+
+    font-weight: 600;
+}
+
+.data-row span {
+
+    color: #f8fafc;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   DESCRIPCIÓN BIOLÓGICA
+========================================================= */
+
+.desc-text {
+
+    width: 100%;
+
+    margin:
+        8px 0 0;
+
+    color: #cbd5e1;
+
+    line-height: 1.45;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   BARRA DE CRECIMIENTO
+========================================================= */
+
+.growth-bar {
+
+    width: 100%;
+
+    height: 8px;
+
+    margin:
+        8px 0 12px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: #1e293b;
+}
+
+
+#growth-progress {
+
+    width: 0%;
+
+    height: 100%;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #16a34a,
+            #84cc16
+        );
+
+    transition:
+        width 0.15s ease;
+}
+
+
+/* =========================================================
+   BARRA DE CONTROLES
+========================================================= */
+
+#controls-toolbar {
+
+    left: 50%;
+
+    bottom: 20px;
+
+    transform:
+        translateX(-50%);
+
+    width:
+        min(
+            760px,
+            calc(100% - 40px)
+        );
+
+    padding: 16px 18px;
+}
+
+
+#controls-toolbar h4 {
+
+    margin:
+        0 0 12px;
+
+    color: #f8fafc;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   GRUPOS DE CONTROLES
+========================================================= */
+
+.control-group {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 10px;
+}
+
+
+.control-group:last-child {
+
+    margin-bottom: 0;
+}
+
+
+.slider-group {
+
+    display: grid;
+
+    grid-template-columns:
+        190px 1fr 60px;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+/* =========================================================
+   ETIQUETAS
+========================================================= */
+
+label {
+
+    color: #cbd5e1;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   SLIDERS
+========================================================= */
+
+input[type="range"] {
+
+    width: 100%;
+
+    cursor: pointer;
+
+    accent-color: #22c55e;
+}
+
+
+.slider-group span {
+
+    color: #86efac;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   BOTONES
+========================================================= */
+
+.buttons-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 8px;
+
+    margin-top: 12px;
+}
+
+
+.btn {
+
+    min-height: 38px;
+
+    padding:
+        7px 9px;
+
+    border: 1px solid
+        rgba(
+            148,
+            163,
+            184,
+            0.30
+        );
+
+    border-radius: 9px;
+
+    background: #1e293b;
+
+    color: #f8fafc;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease,
+        border-color 0.15s ease;
+}
+
+
+.btn:hover {
+
+    background: #334155;
+
+    border-color: #64748b;
+
+    transform:
+        translateY(-1px);
+}
+
+
+.btn:active {
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   ESTADO DE SIMULACIÓN
+========================================================= */
+
+#simulation-status {
+
+    top: 20px;
+
+    right: 20px;
+
+    width: 220px;
+
+    padding: 15px 16px;
+}
+
+
+.status-title {
+
+    margin-bottom: 10px;
+
+    padding-bottom: 8px;
+
+    border-bottom:
+        1px solid
+        rgba(
+            148,
+            163,
+            184,
+            0.20
+        );
+
+    color: #f8fafc;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+
+.status-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    padding:
+        5px 0;
+
+    color: #94a3b8;
+
+    font-size: 12px;
+}
+
+
+.status-row strong {
+
+    color: #86efac;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (
+    max-width: 900px
+) {
+
+    #info-panel {
+
+        width: 270px;
+
+        left: 12px;
+
+        top: 12px;
+    }
+
+
+    #simulation-status {
+
+        right: 12px;
+
+        top: 12px;
+
+        width: 190px;
+    }
+
+
+    #controls-toolbar {
+
+        bottom: 12px;
+
+        width:
+            calc(100% - 24px);
+    }
+
+
+    .slider-group {
+
+        grid-template-columns:
+            160px 1fr 50px;
+    }
+
+
+    .buttons-grid {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+}
+
+
+@media (
+    max-width: 650px
+) {
+
+    #info-panel {
+
+        width: 235px;
+
+        max-height: 45vh;
+
+        overflow-y: auto;
+    }
+
+
+    #simulation-status {
+
+        width: 170px;
+
+        font-size: 11px;
+    }
+
+
+    .slider-group {
+
+        grid-template-columns:
+            1fr;
+
+        gap: 4px;
+    }
+
+
+    .slider-group span {
+
+        text-align: left;
+    }
+
+
+    .buttons-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
